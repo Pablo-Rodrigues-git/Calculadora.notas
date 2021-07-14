@@ -23,6 +23,13 @@ class MainActivity : AppCompatActivity() {
             val media: Int = (nota1+nota2)/2
             val faltas: Int = Integer.parseInt(Faltas.text.toString())
 
+            if(media >=6 && faltas <=10){
+                resultado.setText("Aluno foi Aprovado")
+            }
+            else{
+                resultado.setText("Aluno foi Reprovado")
+
+            }
         }
 
     }
