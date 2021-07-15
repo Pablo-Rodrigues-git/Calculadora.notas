@@ -1,33 +1,29 @@
 package com.example.objetos
 
-import android.annotation.SuppressLint
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
+import android.util.Log
 import com.example.objetos.databinding.ActivityMainBinding
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+    val binding by lazy {ActivityMainBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(binding.root)
 
-        val btCalcular = calcular
-        val resultado = resultado
+        binding.calcular.setOnClickListener {
+            Log.d("1", "onCreate: Entrou")
 
-        btCalcular.setOnClickListener {
-            val nota1: Int = Integer.parseInt(nota1.text.toString())
-            val nota2: Int = Integer.parseInt(nota2.text.toString())
-            val media: Int = (nota1+nota2)/2
-            val faltas: Int = Integer.parseInt(Faltas.text.toString())
+            val nota1 = Integer.parseInt(binding.nota1.text.toString())
+            val nota2 = Integer.parseInt(binding.nota2.text.toString())
+            val media = (nota1 + nota2) / 2
+            val faltas = Integer.parseInt(binding.Faltas.text.toString())
 
-            if(media >=6 && faltas <=10){
-                resultado.setText("Aluno foi Aprovado")
+            if (media >= 6 && faltas <= 10) {
+                binding.resultado.setText("Aluno Aprovado" + "\n" + "Nota Final:" + media+ "\n"+ "Faltas:"+faltas)
             }
             else{
-                resultado.setText("Aluno foi Reprovado")
+                binding.resultado.setText("Aluno Reprovadoo" + "\n" + "Nota Final:" + media+ "\n"+ "Faltas:"+faltas)
 
             }
         }
